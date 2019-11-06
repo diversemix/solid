@@ -8,8 +8,8 @@ log.log('Creating and Configuring...');
 const testId = 123;
 const ms = new MessageStoreImplementation();
 ms.messageRead = (sender: object, args: MessageEventArgs) => {
-  log.log(`  read ${args.message} sent by ${sender}`)
-}
+  log.log(`  read ${args.message} sent by ${sender}`);
+};
 
 log.log('Running...');
 

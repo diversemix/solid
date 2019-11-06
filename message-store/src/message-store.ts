@@ -1,10 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { MessageStore, MessageEventArgs, EventHander } from './types';
+import { EventHander, MessageEventArgs, MessageStore } from './types';
 
 export class MessageStoreImplementation implements MessageStore {
-  messageRead: EventHander<MessageEventArgs>;
-
+  private messageRead: EventHander<MessageEventArgs>;
   private dir: string = '';
 
   public get workingDirectory(): string {
@@ -24,7 +23,7 @@ export class MessageStoreImplementation implements MessageStore {
   public read(id: number): void {
     const file = path.join(this.dir, id + '.txt');
     const message = fs.readFileSync(file).toString();
-    this.messageRead(this, { message } );
+    this.messageRead(this, {message});
   }
 
 }
