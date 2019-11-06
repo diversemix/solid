@@ -1,8 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { MessageStore, MessageEventArgs } from './types';
+import { MessageStore, MessageEventArgs, EventHander } from './types';
 
 export class MessageStoreImplementation implements MessageStore {
+  messageRead: EventHander<MessageEventArgs>;
 
   private dir: string = '';
 
@@ -21,7 +22,9 @@ export class MessageStoreImplementation implements MessageStore {
   }
 
   public read(id: number): void {
-    throw new Error('Method not implemented.');
+    const file = path.join(this.dir, id + '.txt');
+    const message = fs.readFileSync(file).toString();
+    this.messageRead(this, { message } );
   }
 
 }
