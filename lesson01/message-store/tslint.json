@@ -1,0 +1,11 @@
+{
+  "extends": ["tslint:latest"],
+  "rules": {
+    "interface-name": [true, "never-prefix"],
+    "no-implicit-dependencies": [true, "dev"],
+    "no-var-keyword": true,
+    "no-parameter-reassignment": true,
+    "quotemark": [true, "single"],
+    "typedef": [true, "call-signature"]
+  }
+}
