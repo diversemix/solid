@@ -1,3 +1,0 @@
-# message-store
-
-Message Store
