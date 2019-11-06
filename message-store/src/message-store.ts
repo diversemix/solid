@@ -3,7 +3,7 @@ import * as path from 'path';
 import { EventHander, MessageEventArgs, MessageStore } from './types';
 
 export class MessageStoreImplementation implements MessageStore {
-  private messageRead: EventHander<MessageEventArgs>;
+  public messageRead: EventHander<MessageEventArgs>;
   private dir: string = '';
 
   public get workingDirectory(): string {
