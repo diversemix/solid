@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { EventHander, MessageEventArgs, MessageStore } from './types';
+import { MessageStore } from './types';
 
 export class MessageStoreImplementation implements MessageStore {
   private dir: string = '';
