@@ -1,12 +1,12 @@
 import { Option } from 'funfix';
-import { IStoreReader, IStoreWriter, ILogger, IStore, IStoreLogger } from './types';
+import { ILogger, IStore, IStoreLogger, IStoreReader, IStoreWriter } from './types';
 
 export class StoreLogger implements IStore, IStoreLogger {
 
-  reader: IStoreReader;
-  writer: IStoreWriter;
-  logger: ILogger;
-  context: string;
+  public reader: IStoreReader;
+  public writer: IStoreWriter;
+  public logger: ILogger;
+  public context: string;
 
   constructor(context: string, log: ILogger, store: IStore) {
     this.context = context;
@@ -15,40 +15,40 @@ export class StoreLogger implements IStore, IStoreLogger {
     this.writer = store;
   }
 
-  read(id: number): Option<string> {
+  public read(id: number): Option<string> {
     this.log.info(`  ${this.context}::read() for id ${id}`);
     const value: Option<string> = this.reader.read(id);
     if (value.isEmpty()) {
       this.log.info(`  ${this.context}::read() found no message.`);
     } else {
-      this.log.info(`  ${this.context}::read() found message: ${value.get()}`)
+      this.log.info(`  ${this.context}::read() found message: ${value.get()}`);
     }
     return value;
   }
 
-  save(id: number, message: string): void {
+  public save(id: number, message: string): void {
     this.log.info(`  ${this.context}::save() started for id ${id}`);
     this.writer.save(id, message);
     this.log.info(`  ${this.context}::save() done for id ${id}`);
   }
 
-  private get log() : ILogger {
+  private get log(): ILogger {
     return this.logger;
   }
 
-  saving(id: number, message: string) {
+  public saving(id: number, message: string): void {
     this.log.info(`> ${this.context}::SAVING, ${id}, "${message}"`);
   }
 
-  savingDone(id: number, message: string) {
+  public savingDone(id: number, message: string): void {
     this.log.info(`< ${this.context}::SAVED, ${id}, "${message}"`);
   }
 
-  reading(id: number) {
+  public reading(id: number): void {
     this.log.info(`> ${this.context}::READING, ${id}`);
   }
 
-  readingDone(id: number) {
+  public readingDone(id: number): void {
     this.log.info(`< ${this.context}::READ, ${id}`);
   }
 }

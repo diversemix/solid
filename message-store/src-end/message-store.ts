@@ -1,5 +1,5 @@
 import { Option } from 'funfix';
-import { IStoreReader, IStoreWriter, IStore } from './types';
+import { IStore, IStoreReader, IStoreWriter } from './types';
 
 /*
  The MessageStore class is agnostic of the behaviour that is supplied to the
@@ -8,19 +8,19 @@ import { IStoreReader, IStoreWriter, IStore } from './types';
  "Single Responsibility" is followed.
  */
 export class MessageStore implements IStore {
-  reader: IStoreReader;
-  writer: IStoreWriter;
+  public reader: IStoreReader;
+  public writer: IStoreWriter;
 
   constructor(reader: IStoreReader, writer: IStoreWriter) {
     this.writer = writer;
     this.reader = reader;
   }
 
-  save(id: number, message: string): void {
+  public save(id: number, message: string): void {
     this.writer.save(id, message);
   }
 
-  read(id: number): Option<string> {
+  public read(id: number): Option<string> {
     return this.reader.read(id);
   }
 

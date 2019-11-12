@@ -1,7 +1,7 @@
 {
   "extends": ["tslint:latest"],
   "rules": {
-    "interface-name": [true, "never-prefix"],
+    "interface-name": [true, "prefix"],
     "no-implicit-dependencies": [true, "dev"],
     "no-var-keyword": true,
     "no-parameter-reassignment": true,
