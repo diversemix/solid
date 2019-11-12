@@ -1,7 +1,6 @@
 node_modules
 dist
 test
-src/**.js
 .idea/*
 .vscode/*
 
@@ -11,3 +10,4 @@ coverage
 
 *.txt
 package-lock.json
+src/*
