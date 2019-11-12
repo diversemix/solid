@@ -15,7 +15,7 @@
     "lint": "tslint --project . ",
     "test": "run-s build test:*",
     "reset": "git clean -dfx && git reset --hard && npm i",
-    "clean": "rm -rf build test"
+    "clean": "rm -rf build dist"
   },
   "scripts-info": {
     "info": "Display information about the package scripts",
