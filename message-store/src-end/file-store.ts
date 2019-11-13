@@ -16,7 +16,14 @@ export class FileStore implements IStoreReader, IStoreWriter {
 
   public read(id: number): Option<string> {
     const file = path.join(this.workingDirectory, id + '.txt');
-    return Option.of(fs.readFileSync(file).toString());
+    let value: Option<string>;
+    try {
+      value = Option.of(fs.readFileSync(file).toString());
+    } catch (error) {
+      // how do we communicate this error?
+      value = Option.none();
+    }
+    return value;
   }
 
   public save(id: number, message: string): void {
