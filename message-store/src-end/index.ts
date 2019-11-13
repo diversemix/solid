@@ -3,43 +3,42 @@ import { StoreCache } from './store-cache';
 import { StoreLogger } from './store-logger';
 import { IStore, IStoreLogger } from './types';
 
-/*
-   Welcome to the code for this tutorial.
-
-   The comments are designed for you to delete as you go, once you've read and
-   understood them. If you want to you can use a package like `strip-comments`
-   to remove them all.
-
-   Aim:
-
-   To use an abstract `message-store` to serve as an example of the way we
-   approach coding for the server-side. In general this introduces the reader
-   to the SOLID principles using design patterns.
+/**
+ * Welcome to the code for this tutorial.
+ *
+ * The comments are designed for you to delete as you go, once you've read and
+ * understood them. If you want to you can use a package like `strip-comments`
+ * to remove them all.
+ *
+ * Aim:
+ *
+ * To use an abstract `message-store` to serve as an example of the way we
+ * approach coding for the server-side. In general this introduces the reader
+ * to the SOLID principles using design patterns.
  */
 
-/*
-   This File:
-
-   Demonstrates how a message store can be constructed in different way to
-   extend functionality using composition and the decorator pattern. This
-   splits the areas of responsibility out into individual classes thus
-   demonstrating the Single Responsibility Principle (SRP).
+/**
+ * This File:
+ *
+ * Demonstrates how a message store can be constructed in different way to
+ * extend functionality using composition and the decorator pattern. This
+ * splits the areas of responsibility out into individual classes thus
+ * demonstrating the Single Responsibility Principle (SRP).
  */
 
-/*
-   The following three createMessageStore...() functions create different types
-   of message-store:
-
-   createMessageStore
-      - Implements using the FileStore.
-
-   createMessageStoreWithLogging
-      - Implements FileStore and decorated with the StoreLogger.
-
-   createMessageStoreWithLoggingAndCache
-      - Implements FileStore and decorated with the StoreLogger this is then
-      further decorated with a cache which itself is decorated with a logger.
-
+/**
+ * The following three createMessageStore...() functions create different types
+ * of message-store:
+ *
+ * createMessageStore
+ * - Implements using the FileStore.
+ *
+ * createMessageStoreWithLogging
+ * - Implements FileStore and decorated with the StoreLogger.
+ *
+ * createMessageStoreWithLoggingAndCache
+ * - Implements FileStore and decorated with the StoreLogger this is then
+ *   further decorated with a cache which itself is decorated with a logger.
  */
 
 const createMessageStore = (): IStore => {
@@ -58,9 +57,9 @@ const createMessageStoreWithLoggingAndCache = (): IStore => {
   return new StoreLogger('StoreCache', console, storeCache);
 };
 
-/*
-   runTests() - runs a read-save-read on the store that is passed in. It
-   will also use the logger interface if there is one.
+/**
+ * runTests() - runs a read-save-read on the store that is passed in. It
+ * will also use the logger interface if there is one.
  */
 const runTests = (store: IStore, logger: IStoreLogger | null) => {
   const testId = 123;
@@ -80,8 +79,10 @@ const runTests = (store: IStore, logger: IStoreLogger | null) => {
 };
 
 const run = (store: any) => {
-  // This if statement is here because the first example does not implement
-  // the IStoreLogger interface.
+  /**
+   * This if statement is here because the first example does not implement
+   * the IStoreLogger interface.
+   */
   if (store instanceof FileStore) {
     runTests(store, null);
   } else {
@@ -89,9 +90,9 @@ const run = (store: any) => {
   }
 };
 
-/*
-   Main section of the application which runs the tests with differently
-   constructed message-stores.
+/**
+ * Main section of the application which runs the tests with differently
+ * constructed message-stores.
  */
 const log = console;
 

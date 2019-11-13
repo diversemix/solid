@@ -25,6 +25,9 @@ export interface IStoreLogger {
   readingDone(id: number): void;
 }
 
+/**
+ * This interface is not used but is part of on exercise
+ */
 export interface ICacheLogger {
   cacheHit(id: number, message: string): void;
   savingMiss(id: number): void;
