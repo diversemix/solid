@@ -1,5 +1,11 @@
 import { IStoreWriter } from './types';
 
+/**
+ * This File:
+ *
+ * Contains the class `CompositeStoreWriter` to be used in one of the exercises.
+ *
+ */
 export class CompositeStoreWriter implements IStoreWriter {
 
   public writers: IStoreWriter[];

@@ -1,22 +1,40 @@
 import { Option } from 'funfix';
-import { ILogger, IStore, IStoreLogger, IStoreReader, IStoreWriter } from './types';
+import { ILogger, IStoreLogger, IStoreReader, IStoreWriter } from './types';
 
-export class StoreLogger implements IStore, IStoreLogger {
+/**
+ * This File:
+ *
+ * Contains the `StoreLogger` class which is responsible for logging methods
+ * called on `IStoreReader` and `IStoreWriter`.
+ *
+ * This demonstrates the "Single Responsibility Principle" which is the "S" in
+ * SOLID.
+ *
+ * It also maintains the segregation of the interfaces and demonstrates
+ * "Implementation Hiding" (a more descriptive term for Encapsulation). This
+ * is done by hiding the implementation of the logger behind the interface
+ * IStoreLogger which defines the logging methods that can be called.
+ *
+ * The class also is a decorator for `IStoreReader` and `IStoreWriter` to add
+ * debug logging when calling `read` and `save` respectively.
+ *
+ */
+export class StoreLogger implements IStoreReader, IStoreWriter, IStoreLogger {
 
   public reader: IStoreReader;
   public writer: IStoreWriter;
   public logger: ILogger;
   public context: string;
 
-  constructor(context: string, log: ILogger, store: IStore) {
+  constructor(context: string, log: ILogger, reader: IStoreReader, writer: IStoreWriter) {
     this.context = context;
     this.logger = log;
-    this.reader = store;
-    this.writer = store;
+    this.reader = reader;
+    this.writer = writer;
   }
 
   public read(id: number): Option<string> {
-    this.log.info(`  ${this.context}::read() for id ${id}`);
+    this.log.debug(`  ${this.context}::read() for id ${id}`);
     const value: Option<string> = this.reader.read(id);
     if (value.isEmpty()) {
       this.log.debug(`  ${this.context}::read() found no message.`);

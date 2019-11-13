@@ -3,6 +3,18 @@ import { Option } from 'funfix';
 import * as path from 'path';
 import { IStoreReader, IStoreWriter } from './types';
 
+/**
+ * This File:
+ *
+ * Contains the class `FileStore` - An implementation that uses the file system.
+ *
+ * This demonstrates the "Interface Segregation Principle" which is the "I" in
+ * SOLID. Note that we could easily define an `IStore` interface in `types.ts`
+ * which would extend both `IStoreReader` and `IStoreWriter` - but this would be
+ * premature as this would constrain the way the `FileStore` class could be
+ * used too early. This constraint is part of `index.ts` which does indeed
+ * define this interface `IStore` for convenience.
+ */
 export class FileStore implements IStoreReader, IStoreWriter {
   public cwd: string = '';
 

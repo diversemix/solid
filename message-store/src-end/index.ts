@@ -1,7 +1,7 @@
 import { FileStore } from './file-store';
 import { StoreCache } from './store-cache';
 import { StoreLogger } from './store-logger';
-import { IStore, IStoreLogger } from './types';
+import { IStoreLogger, IStoreReader, IStoreWriter } from './types';
 
 /**
  * Welcome to the code for this tutorial.
@@ -41,20 +41,22 @@ import { IStore, IStoreLogger } from './types';
  *   further decorated with a cache which itself is decorated with a logger.
  */
 
+interface IStore extends IStoreReader, IStoreWriter {}
+
 const createMessageStore = (): IStore => {
   return new FileStore('');
 };
 
 const createMessageStoreWithLogging = (): IStore => {
   const store = new FileStore('');
-  return new StoreLogger('FileStore', console, store);
+  return new StoreLogger('FileStore', console, store, store);
 };
 
 const createMessageStoreWithLoggingAndCache = (): IStore => {
   const store = new FileStore('');
-  const loggingStore = new StoreLogger('FileStore', console, store);
+  const loggingStore = new StoreLogger('FileStore', console, store, store);
   const storeCache = new StoreCache(loggingStore, loggingStore);
-  return new StoreLogger('StoreCache', console, storeCache);
+  return new StoreLogger('StoreCache', console, storeCache, storeCache);
 };
 
 /**

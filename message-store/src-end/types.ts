@@ -8,10 +8,6 @@ export interface IStoreWriter {
   save(id: number, message: string): void;
 }
 
-export interface IStore extends IStoreReader, IStoreWriter {
-
-}
-
 export interface ILogger {
   info(message: string): void;
   debug(message: string): void;

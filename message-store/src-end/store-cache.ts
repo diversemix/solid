@@ -1,6 +1,13 @@
 import { Option } from 'funfix';
 import { IStoreReader, IStoreWriter } from './types';
 
+/**
+ * This File:
+ *
+ * Contains the class `StoreCache` - A cache implementation for a Store.
+ *
+ * This decorates `IStoreReader` and `IStoreWriter` with an in memory cache.
+ */
 export class StoreCache implements IStoreReader, IStoreWriter {
 
   public reader: IStoreReader;
