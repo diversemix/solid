@@ -1,6 +1,8 @@
+clean:
+	-yarn clean
+
 get_deps:
 	-if [ ! -e "src" ]; then ln -s ./src-end ./src; fi
-	-yarn clean
 	-yarn
 
 lint: get_deps

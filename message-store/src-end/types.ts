@@ -24,3 +24,8 @@ export interface IStoreLogger {
   reading(id: number): void;
   readingDone(id: number): void;
 }
+
+export interface ICacheLogger {
+  cacheHit(id: number, message: string): void;
+  savingMiss(id: number): void;
+}

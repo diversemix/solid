@@ -19,17 +19,17 @@ export class StoreLogger implements IStore, IStoreLogger {
     this.log.info(`  ${this.context}::read() for id ${id}`);
     const value: Option<string> = this.reader.read(id);
     if (value.isEmpty()) {
-      this.log.info(`  ${this.context}::read() found no message.`);
+      this.log.debug(`  ${this.context}::read() found no message.`);
     } else {
-      this.log.info(`  ${this.context}::read() found message: ${value.get()}`);
+      this.log.debug(`  ${this.context}::read() found message: ${value.get()}`);
     }
     return value;
   }
 
   public save(id: number, message: string): void {
-    this.log.info(`  ${this.context}::save() started for id ${id}`);
+    this.log.debug(`  ${this.context}::save() started for id ${id}`);
     this.writer.save(id, message);
-    this.log.info(`  ${this.context}::save() done for id ${id}`);
+    this.log.debug(`  ${this.context}::save() done for id ${id}`);
   }
 
   private get log(): ILogger {
