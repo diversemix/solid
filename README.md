@@ -8,7 +8,7 @@ A walk-through of improving an example "Message Store" to demonstrate SOLID prin
 
 There is documentation to read in the code if you want to go at your own pace.
 Otherwise you can follow the tutorial in the
-[associated gitbook here](https://diversemix.gitbook.io/diversedev/typescript/solid-in-typescript)
+[associated gitbook here](https://diversemix.gitbook.io/diversedev/typescript/solid-in-typescript) :warning: (Work in Progress)
 
 ## Getting started
 
@@ -23,6 +23,8 @@ make run
 ```
 
 ## Exercises
+
+Some thoughts on exercises - to be talked about with the team.
 
 1. Use the class `CompositeStoreWriter` defined in the file `composite-store-writer.ts` to replace the use of the decorator pattern to use the composite pattern.
 2. Create an implementation of `ICacheLogger` and use it to replace the cache's use of `IStoreLogger`.
